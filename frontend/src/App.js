@@ -1,25 +1,25 @@
 import React, { Fragment } from 'react';
 import { Header } from './budget/Header'
 import { Balance } from './budget/Balance'
-import { Expenses } from './budget/Expenses'
-import { ExpensesList } from './budget/ExpensesList'
-import { AddExpense } from './budget/AddExpense'
+import { Transactions } from './budget/Transactions'
+import { TransactionsList } from './budget/TransactionsList'
+import { AddTransaction } from './budget/AddTransaction'
 
 import {GlobalProvider} from './context/GlobalState';
 
 function App() {
   return (
-    <Fragment>
+    // <Fragment>
       <GlobalProvider>  
-      <Header />
-      <div className="container">
-        <Balance />
-        <Expenses />
-        <ExpensesList />
-        <AddExpense />
-      </div>
+        <Header />
+        <div className="container">
+          <Balance />
+          <Transactions />
+          <TransactionsList />
+          <AddTransaction />
+        </div>
       </GlobalProvider>
-    </Fragment>
+    // </Fragment>
   
   );
 }

@@ -1,12 +1,28 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
+import { GlobalContext } from '../context/GlobalState';
 
-export const AddExpense = () => {
+export const AddTransaction = () => {
   const [text, setText] = useState('');
   const [amount, setAmount] =useState(0)
 
+  const { addTransaction } = useContext(GlobalContext);
+
+  const onSubmit = e => {
+	  e.preventDefault();
+
+	  const newTransaction = {
+		//   should change to UUID for future
+		  id: Math.floor(Math.random() * 100000000),
+		  text,
+		//   changes amount from string to number
+		  amount: +amount
+	  }
+	  addTransaction(newTransaction);
+  }
+
 	return (
 		<div>
-			<form>
+			<form onSubmit={onSubmit}>
 				<div className="form-group">
 					<label htmlFor="text">Description</label>
 					<input
@@ -19,7 +35,7 @@ export const AddExpense = () => {
 					/>
 				</div>
 				<div className="form-group">
-					<label htmlFor="amount">Expense amount<br />(negative - expense)</label>
+					<label htmlFor="amount">Transaction amount<br />(positive numbers are income and negative numbers are expenses)</label>
 					<input 
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
